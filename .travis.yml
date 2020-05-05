@@ -1,0 +1,10 @@
+language: generic
+sudo: required
+services:
+ - docker
+ 
+before_install:
+ - docker build -t rockman25/chickenhead-react -f Dockerfile.dev .
+ 
+script:
+ - docker run -e CI=true rockman25/chickenhead-react npm run test
