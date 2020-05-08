@@ -1,22 +1,23 @@
 language: generic
 sudo: required
+
 services:
- - docker
+  - docker
  
 before_install:
- - docker build -t rockman25/chickenhead-react -f Dockerfile.dev .
+  - docker build -t rockman25/chickenhead-react -f Dockerfile.dev .
  
 script:
- - docker run -e CI=true rockman25/chickenhead-react npm run test
+  - docker run -e CI=true rockman25/chickenhead-react npm run test
  
 deploy:
- provider: elasticbeanstalk
- region: "us-east-1"
- app: "cj-react"
- env: "CjReact-env"
- bucket_name: "elasticbeanstalk-us-east-1-789458539685"
- bucket_path: "cj-react"
- on:
-  branch: master
- access_key_id: $AWS_ACCESS_KEY
- secret_access_key: $AWS_SECRET_KEY
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "cj-react"
+  env: "CjReact-env"
+  bucket_name: "elasticbeanstalk-us-east-1-789458539685"
+  bucket_path: "cj-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
